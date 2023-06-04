@@ -6,4 +6,4 @@ transformers
 streamlit
 sounddevice
 numpy
-PortAudio
+libportaudio2
