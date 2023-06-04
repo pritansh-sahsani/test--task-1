@@ -5,8 +5,6 @@ import sounddevice as sd
 import numpy as np
 import soundfile as sf
 from transformers import Wav2Vec2Tokenizer, Wav2Vec2ForCTC
-import requests
-import json
 tokenizer = Wav2Vec2Tokenizer.from_pretrained("facebook/wav2vec2-base-960h")
 model = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-base-960h")
 
@@ -93,9 +91,9 @@ def record():
     with c2:
         transcript=""
         start_button=st.button("Start Recording")
+        stop_button=st.button("Stop Recording")
 
         if start_button:
-            stop_button=st.button("Stop Recording")
             with sf.SoundFile("temp_input_storage.wav", mode='w', samplerate=16000, channels=1) as file:
                 with sd.InputStream(samplerate=16000, channels=1, callback=callback):
                     while True:
@@ -136,21 +134,6 @@ def record():
 def transcripter():
     # Load your API key from an environment variable or secret management service
     speech, rate = librosa.load("temp_input_storage.wav", sr=16000)
-    # api_token = "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"
-    # headers = {"Authorization": f"Bearer {api_token}"}
-    # API_URL = "https://api-inference.huggingface.co/models/facebook/wav2vec2-base-960h"
-    # def query(data):
-    #     response = requests.request("POST", API_URL, headers=headers, data=data)
-    #     return json.loads(response.content.decode("utf-8"))
-    
-    # data = query(speech.all())
-
-    # values_view = data.values()
-    # value_iterator = iter(values_view)
-    # text_value = next(value_iterator)
-    # text_value = text_value.lower()
-
-    # return text_value
     input_values = tokenizer(speech, return_tensors='pt').input_values
     logits = model(input_values).logits
     predicted_ids = torch.argmax(logits, dim=-1)
