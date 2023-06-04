@@ -46,9 +46,6 @@ with c32:
     st.caption("")
     st.caption("")
 
-    st.write(
-        "&nbsp &nbsp Made in [![this is an image link](https://i.imgur.com/iIOA6kU.png)](https://www.streamlit.io/)&nbsp, with :heart: by [@DataChaz](https://www.charlywargnier.com/) | [![this is an image link](https://i.imgur.com/thJhzOO.png)](https://www.buymeacoffee.com/cwar05)"
-    )
 
 st.text("")
 st.markdown(
@@ -96,12 +93,6 @@ def demo():
         with st.form(key="my_form"):
 
             f = st.file_uploader("", type=[".wav"])
-
-            st.info(
-                f"""
-                        👆 Upload a .wav file. Or try a sample: [Wav sample 01](https://github.com/CharlyWargnier/CSVHub/blob/main/Wave_files_demos/Welcome.wav?raw=true) | [Wav sample 02](https://github.com/CharlyWargnier/CSVHub/blob/main/Wave_files_demos/The_National_Park.wav?raw=true)
-                        """
-            )
 
             submit_button = st.form_submit_button(label="Transcribe")
 
@@ -178,12 +169,6 @@ def API_key():
 
             f = st.file_uploader("", type=[".wav"])
 
-            st.info(
-                f"""
-                        👆 Upload a .wav file. Or try a sample: [Wav sample 01](https://github.com/CharlyWargnier/CSVHub/blob/main/Wave_files_demos/Welcome.wav?raw=true) | [Wav sample 02](https://github.com/CharlyWargnier/CSVHub/blob/main/Wave_files_demos/The_National_Park.wav?raw=true)
-                        """
-            )
-
             submit_button = st.form_submit_button(label="Transcribe")
 
     if not submit_button:
@@ -256,43 +241,9 @@ def API_key():
 
             else:
                 path_in = None
-                st.info(
-                    f"""
-                        👆 Upload a .wav file. Or try a sample: [Wav sample 01](https://github.com/CharlyWargnier/CSVHub/blob/main/Wave_files_demos/Welcome.wav?raw=true) | [Wav sample 02](https://github.com/CharlyWargnier/CSVHub/blob/main/Wave_files_demos/The_National_Park.wav?raw=true)
-                        """
-                )
 
         except ValueError:
             "ValueError"
-
-
-# Notes about the app -------------------------------------------------
-
-with st.expander("ℹ️ - About this app", expanded=False):
-
-    st.write(
-        """     
-
--   The Free mode is limited to 2MB of the audio file. You can use your API key to transcribe audio files of up to 30MB!
--   The tool is still in Beta; don't hesitate to contact me at [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/DataChaz/speech-to-text) if bugs or questions
--   This app is free. If it's helpful to you, you can [buy me a ☕](https://www.buymeacoffee.com/cwar05) to support my work
-	    """
-    )
-
-    st.markdown("")
-
-with st.expander("🔆 Coming soon!", expanded=False):
-
-    st.write(
-        """  
--   Add more embedding models
--   Add more languages
--   Allow for larger wave files to be reviewed (currently limited to 30 MB)
-
-	    """
-    )
-
-    st.markdown("")
 
 if __name__ == "__main__":
     main()
