@@ -1,9 +1,9 @@
 torch
 librosa
-sounddevice 
 numpy 
 soundfile
 transformers
 streamlit
 sounddevice
 numpy
+PortAudio
